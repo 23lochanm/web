@@ -1,4 +1,4 @@
-/* const student = {
+ const student = {
     fullName:"lochan.m",
     marks:93.9,
     printMarks: function () {
@@ -81,4 +81,36 @@ try{
     console.log("Person", Person);
 }catch(err){
     console.log("err");
-}*/
+} 
+
+
+
+function getData(dataId) {
+    setTimeout(()=>{
+        console.log("data", dataId);
+        if(getNextData){getNextData();}
+    },2000);
+}
+getData(1,()=>{
+    getData(2)
+});
+
+
+function api() {
+return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        console.log("wether data");
+        resolve(200);
+    },2000);
+});    
+}
+
+
+function getData(dataId) {
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            console.log("data",dataId);
+            resolve("sussccess");
+        },2000)
+    });
+}
