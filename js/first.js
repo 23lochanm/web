@@ -114,3 +114,29 @@ function getData(dataId) {
         },2000)
     });
 }
+async function getAllData() {
+    await getData(1);
+    await getData(2);
+    await getData(3);
+}
+
+
+const getFacts = async()=>{
+    console.log("getting data.............");
+    let response = await fatch(URL);
+    console.log(response);
+    let data = await response.json();
+    console.log(data);
+}
+
+
+function getFacts(){
+    fetch(URL)
+    .then((response)=>{
+        return response.json();
+    })
+
+    .then((data)=>{
+        console.log(data);
+    })
+}
