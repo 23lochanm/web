@@ -1,4 +1,4 @@
- const student = {
+/* const student = {
     fullName:"lochan.m",
     marks:93.9,
     printMarks: function () {
@@ -139,4 +139,4 @@ function getFacts(){
     .then((data)=>{
         console.log(data);
     })
-}
+}*/
