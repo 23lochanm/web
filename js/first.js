@@ -140,3 +140,37 @@ function getFacts(){
         console.log(data);
     })
 }*/
+ const BASE ~ URL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/inr.json";
+
+ const dropdowns = document.querySelectorAll(".dropdown select");
+
+ 
+for(let select of dropdowns){
+     for (currCode in countryList){
+// console.log(code, countryList(code));
+
+ let newOption = document.createElement("option");
+ newOption.innerText = currCode;
+
+ newOption.value = currCode;
+
+ if(select.name ==="from" && currCode ==="USD"){
+    newOption.selected = "selected"
+ }
+
+ else  if(select.name ==="to" && currCode ==="INR"){
+    newOption.selected = "selected"
+ }
+
+ select.append(newOption);
+}
+select.addEventListener("change",(evt)=>{
+    updateFlag(evt.target);
+});
+}
+
+const updateFlag =(element) =>{
+    //console.log(element);
+    let currCode=element.value;
+    //console.log(currCode);
+}
