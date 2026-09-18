@@ -140,10 +140,12 @@ function getFacts(){
         console.log(data);
     })
 }*/
- const BASE ~ URL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/inr.json";
+ const BASE ~ URL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
 
  const dropdowns = document.querySelectorAll(".dropdown select");
-
+ const btn = document.querySelector("from button");
+ const fromCurr = document.querySelector(".from select");
+ const toCurr = document.querySelector(".to select");
  
 for(let select of dropdowns){
      for (currCode in countryList){
@@ -169,8 +171,32 @@ select.addEventListener("change",(evt)=>{
 });
 }
 
-const updateFlag =(element) =>{
+const updateFlag = (element) =>{
     //console.log(element);
-    let currCode=element.value;
+    let currCode = element.value;
     //console.log(currCode);
+    let countryCode = countryCode[currCode];
+    let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
+    let img = element.parentElement.querySelector("img");
+    img.src = newSrc;
 }
+
+btn.addEventListener("click",async(evt)=>{
+    evt.preventDefault();
+    let amount = document.querySelector(".amount input");
+    let amountVal = amount.value;
+    //console.log("amtVal");
+    if(amtVal === ""||amtVal<1){
+        amtVal = 1;
+        amount.value = "1";
+    }
+    //console.log(fromCurr.value,toCurr.value)
+    const URL = `${BASE_URL}/${fromCurr.value.lowerCase()}/${toCurr.value.lowerCase()}`;
+    let response = await fetch(URL);
+    let data = await response.json();
+    let rate = data[toCurr.value.toLowerCase()];
+    console.log(rate);
+    console.log(amount);
+    let finalAmount = amtVal = rate;
+    MessageChannel.innerText = `${amtVal}${fromCurr.value} = ${finalAmount}${toCurr.value}`;
+});
